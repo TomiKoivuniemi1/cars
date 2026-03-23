@@ -1,0 +1,109 @@
+html {
+    background-color: #2e2e2e;
+}
+
+body {
+    padding: 20px;
+    background-color: #2e2e2e;
+    margin: 30px auto;
+    max-width: 5000px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 5000px;
+    background-color: #2e2e2e;
+    box-shadow: none;
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+}
+
+.cards-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    background-color: #2e2e2e;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.card {
+    border-radius: 0;
+    box-shadow: none;
+    color: #f0f6fc;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-height: 200px;
+    background-color: #2e2e2e;
+    border: none;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.carInfo, .specs {
+    padding: 10px;
+    background-color: #2e2e2e;
+    font-size: 0.9em;
+    color: #f0f6fc;
+    border: none;
+    align-items: center;
+}
+
+.specs p {
+    margin: 5px 0;
+    border: none;
+    align-items: center;
+}
+
+.specs span {
+    font-weight: bold;
+}
+
+.error-message {
+    text-align: center;
+    color: #ff0000;
+    margin-top: 20px;
+    font-size: 1.5em;
+    border: none;
+}
+
+.back {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    color: #747474;
+    font-size: 1.5em;
+    text-decoration: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2e2e2e;
+    padding: 10px;
+    box-shadow: none;
+    border: none;
+    margin: 0 auto;
+}
+
+.back:hover {
+    text-decoration: underline;
+}

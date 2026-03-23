@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/car.css">
+    <title>Cars-viewer</title>
+</head>
+{{$path := .Path}}
+<body>
+    <header>
+        <h1 class="title">cars-viewer</h1> 
+    </header>
+    <div class="filter">
+        <h2>Search for Cars</h2>
+        <form action="/filter" class="select">
+            <select name="manufacturerID">
+                <option value="">Manufacturer</option>
+                {{range .Manufacturers}}
+                <option value="{{.ID}}">{{.Name}}</option>
+                {{end}}
+            </select>
+            <select name="categoryID">
+                <option value="">Category</option>
+                {{range .Categories}}
+                <option value="{{.ID}}">{{.Name}}</option>
+                {{end}}
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <div class="button-group">
+            <button form="compare" type="submit">Compare</button>
+            <button class="button" onclick="location.href='/';">Clear Selected</button>
+        </div>
+    </div>
+    <div>
+        {{if .Models}}
+            <form id="compare" action="/compare" class="main">
+                {{ range .Models }}
+                    <div class="card" id="{{ .ID }}">
+                        <a href="/car?id={{ .ID }}">
+                            <div class="carInfo">
+                                <h3>{{ .Name }}</h3>
+                                <img src="http://localhost:3000/api/images/{{.Image}}" alt="{{ .Name }}">
+                            </div>
+                        </a>
+                        {{if ne $path "compare"}}
+                        <div class="compareCheckbox">
+                            <p>Compare</p>
+                            <input class="checkbox" type="checkbox" id="car_{{ .ID }}" name="IDs" value="{{ .ID }}">
+                        </div>
+                        {{end}}
+                    </div>
+                {{ end }}
+            </form>
+        {{else}}
+            <div class="error-message">
+                <h1>No Cars Found</h1>
+                <p>Sorry, we couldn't find any cars matching your search criteria. Please try adjusting your filters and search again.</p>
+            </div>
+        {{end}}
+    </div>
+</body>
+</html>

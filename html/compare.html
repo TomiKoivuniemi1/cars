@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/car.css">
+    <link rel="stylesheet" href="/static/compare.css">
+    <title>Compare Cars</title>
+</head>
+<body>
+    <main>
+        {{if .Models}}
+            <div class="cards-container">
+                {{ range .Models }}
+                    <div class="card">
+                        <div class="carInfo">
+                            <h3>{{ .Name }}</h3>
+                            <img src="http://localhost:3000/api/images/{{.Image}}" alt="{{ .Name }}">
+                        </div>
+                        <div class="specs">
+                            <p><span>Manufacturer:</span> {{ .Manufacturer }}</p>
+                            <p><span>Category:</span> {{ .Category }}</p>
+                            <p><span>Year:</span> {{ .Year }}</p>
+                            <p><span>Engine:</span> {{ .Specifications.Engine }}</p>
+                            <p><span>Horsepower:</span> {{ .Specifications.Horsepower }}hp</p>
+                            <p><span>Transmission:</span> {{ .Specifications.Transmission }}</p>
+                            <p><span>Drivetrain:</span> {{ .Specifications.Drivetrain }}</p>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        {{else}}
+            <div class="error-message">
+                <h1>No Cars Selected</h1>
+                <p>Sorry, no cars were selected for comparison. Please go back and select some cars to compare.</p>
+            </div>
+        {{end}}
+    </main>
+    <a class="back" href="/">Back to cars-viewer</a>
+</body>
+</html>

@@ -39,14 +39,11 @@ func HandleError(w http.ResponseWriter, status int) {
 	// Write the error message to the response
 	_, err := fmt.Fprintf(w, "Error %d: %s", ErrMsg.Code, ErrMsg.Message)
 	if err != nil {
-		// Log if writing the error message fails
 		fmt.Println("Failed to write error message:", err)
 	}
 }
 
-// ApiErrorFound checks for errors in the provided error channel and returns true if any errors are found.
-// It iterates over the channel and returns true immediately upon encountering a non-zero error code,
-// otherwise returns false if the channel is empty or only contains zero error codes.
+// ApiErrorFound checks for errors
 func ApiErrorFound(errCh <-chan int) bool {
 	for errCode := range errCh {
 		if errCode != 0 {

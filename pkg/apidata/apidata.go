@@ -33,7 +33,7 @@ func ApiData(endpoint string, target any, wg *sync.WaitGroup, errCh chan int) {
 	contentType := response.Header.Get("Content-Type")
 	if !strings.Contains(contentType, "application/json") {
 		fmt.Printf("Unexpected content type %s for endpoint %s\n", contentType, fullURL)
-		errCh <- http.StatusInternalServerError // Send internal server error code to the error channel.
+		errCh <- http.StatusInternalServerError
 		return
 	}
 
@@ -41,7 +41,7 @@ func ApiData(endpoint string, target any, wg *sync.WaitGroup, errCh chan int) {
 	responseData, err := io.ReadAll(response.Body)
 	if err != nil {
 		fmt.Printf("API reading error for endpoint %s: %s\n", fullURL, err.Error())
-		errCh <- http.StatusInternalServerError // Send internal server error code to the error channel.
+		errCh <- http.StatusInternalServerError
 		return
 	}
 
@@ -49,8 +49,8 @@ func ApiData(endpoint string, target any, wg *sync.WaitGroup, errCh chan int) {
 	err = json.Unmarshal(responseData, target)
 	if err != nil {
 		fmt.Printf("API unmarshal error for endpoint %s: %s\n", fullURL, err.Error())
-		fmt.Printf("Response body: %s\n", string(responseData)) // Print the response body for debugging.
-		errCh <- http.StatusInternalServerError                 // Send internal server error code to the error channel.
+		fmt.Printf("Response body: %s\n", string(responseData))
+		errCh <- http.StatusInternalServerError
 		return
 	}
 }

@@ -6,8 +6,7 @@ import (
 	"strconv"
 )
 
-// Filter filters a list of car models based on query parameters such as manufacturer and category.
-// It returns a list of models that satisfy all the provided filter criteria.
+// Filter a list of car models based on query parameters such as manufacturer and category.
 func Filter(query url.Values, models []cartypes.Model) []cartypes.Model {
 	var filteredResult []cartypes.Model
 
@@ -25,7 +24,6 @@ func Filter(query url.Values, models []cartypes.Model) []cartypes.Model {
 }
 
 // matchManufacturer determines if a model's manufacturer matches any of the specified manufacturer IDs in the query.
-// Returns true if no manufacturer IDs are specified, implying no filtering on manufacturer.
 func matchManufacturer(model cartypes.Model, ManufacturerID []string) bool {
 	if len(ManufacturerID) == 0 || ManufacturerID[0] == "" {
 		return true
@@ -34,7 +32,6 @@ func matchManufacturer(model cartypes.Model, ManufacturerID []string) bool {
 }
 
 // matchCategory determines if a model's category matches any of the specified category IDs in the query.
-// Returns true if no category IDs are specified, implying no filtering on category.
 func matchCategory(model cartypes.Model, CategoryID []string) bool {
 	if len(CategoryID) == 0 || CategoryID[0] == "" {
 		return true
